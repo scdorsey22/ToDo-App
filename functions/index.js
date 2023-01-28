@@ -20,10 +20,12 @@ app.put('/todo/:todoId', editTodo)
 
 // Users
 const {
-    loginUser
+    loginUser,
+    signUpUser,
 } = require("./APIs/users")
 
 app.post('/login', loginUser)
+app.post('/signup', signUpUser)
 
 
 exports.api = functions.https.onRequest(app);

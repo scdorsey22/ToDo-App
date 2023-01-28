@@ -1,6 +1,6 @@
 
 // Your web app's Firebase configuration
-exports.firebaseConfig = {
+module.exports = {
   apiKey: "AIzaSyAOCFi2B6osK6MAatdCGkgcviobL9zSZ9U",
   authDomain: "to-do-ace6b.firebaseapp.com",
   projectId: "to-do-ace6b",
