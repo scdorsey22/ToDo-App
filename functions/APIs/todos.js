@@ -1,4 +1,5 @@
-const { ownerDocument } = require('@mui/material');
+
+const { request } = require('express');
 const { db } = require('../util/admin');
 
 
@@ -48,7 +49,6 @@ exports.getOneTodo = (request, response) => {
 		});
 };
 
-
 exports.postOneTodo = (request, response) => {
     if (request.body.body.trim() === '') {
         return response.status(400).json({body: 'Must not be empty'})
@@ -96,4 +96,19 @@ exports.deleteTodo = (request, response) => {
 
         })
 
+}
+
+exports.editTodo = (request, response) => {
+    if (request.body.todoId || request.body.createdAt) {
+        response.status(403).json({ message: 'Not allowed to edit' })
+    }
+    let document = db.collection('todos').doc(`${request.params.todoId}`)
+    document.update(request.body)
+    .then(() => {
+        response.json({ message: 'Updated Successfully' })
+    })
+    .catch((err) => {
+        console.error(err)
+        return response.status(500).json({ error: err.code })
+    })
 }
