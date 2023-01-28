@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const app = require('express')();
+const auth = require('./util/auth')
 
 
 // Todos
@@ -22,10 +23,12 @@ app.put('/todo/:todoId', editTodo)
 const {
     loginUser,
     signUpUser,
+    uploadProfilePhoto,
 } = require("./APIs/users")
 
 app.post('/login', loginUser)
 app.post('/signup', signUpUser)
+app.post('/user/image', auth, uploadProfilePhoto)
 
 
 exports.api = functions.https.onRequest(app);
