@@ -120,13 +120,14 @@ exports.uploadProfilePhoto = (request, response) => {
 	const path = require('path');
 	const os = require('os');
 	const fs = require('fs');
-	const busboy = new BusBoy({ headers: request.headers });
+	const busboy = BusBoy({ headers: request.headers });
 
 	let imageFileName;
 	let imageToBeUploaded = {};
 
 	busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
 		if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
+            console.log(mimetype)
 			return response.status(400).json({ error: 'Wrong file type submited' });
 		}
 		const imageExtension = filename.split('.')[filename.split('.').length - 1];

@@ -17,7 +17,6 @@ module.exports = (request, response, next) => {
 			return db.collection('users').where('userId', '==', request.user.uid).limit(1).get();
 		})
 		.then((data) => {
-            console.log(data)
 			request.user.username = data.docs[0].data().username;
 			request.user.imageUrl = data.docs[0].data().imageUrl;
 			return next();
