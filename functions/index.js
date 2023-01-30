@@ -24,11 +24,13 @@ const {
     loginUser,
     signUpUser,
     uploadProfilePhoto,
+    getUserDetail
 } = require("./APIs/users")
 
 app.post('/login', loginUser)
 app.post('/signup', signUpUser)
 app.post('/user/image', auth, uploadProfilePhoto)
+app.get('/user', auth, getUserDetail)
 
 
 exports.api = functions.https.onRequest(app);
