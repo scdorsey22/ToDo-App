@@ -127,7 +127,6 @@ exports.uploadProfilePhoto = (request, response) => {
 
 	busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
 		if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
-            console.log(mimetype)
 			return response.status(400).json({ error: 'Wrong file type submited' });
 		}
 		const imageExtension = filename.split('.')[filename.split('.').length - 1];
