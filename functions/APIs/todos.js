@@ -7,6 +7,7 @@ exports.getAllTodos = (request, response) => {
 
     db
 		.collection('todos')
+        .where('username', '==', request.user.username)
 		.orderBy('createdAt', 'desc')
 		.get()
 		.then((data) => {
@@ -60,7 +61,8 @@ exports.postOneTodo = (request, response) => {
     const newTodoItem = {
         title: request.body.title,
         body: request.body.body,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        username: request.user.username
     }
     db
         .collection('todos')
