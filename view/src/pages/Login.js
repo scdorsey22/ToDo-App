@@ -1,47 +1,13 @@
 
 import { Avatar, Button, TextField, Link, Grid, CircularProgress } from "@mui/material";
-import { CssBaseline, Typography, Container } from "@mui/material";
+import { CssBaseline, Typography, Container, Paper } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { ThemeProvider } from "@mui/material";
-import { withStyles } from "@mui/material";
-import { adaptV4Theme } from "@mui/material";
-
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import axios from 'axios'
 import { Component } from "react";
-import { createTheme } from "@mui/material";
 
-
-const styles = (theme) => ({
-	paper: {
-		marginTop: theme.spacing(8),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main
-	},
-	form: {
-		width: '100%',
-		marginTop: theme.spacing(1)
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2)
-	},
-	customError: {
-		color: 'red',
-		fontSize: '0.8rem',
-		marginTop: 10
-	},
-	progess: {
-		position: 'absolute'
-	}
-});
-
-
+const theme = createTheme()
 
 class Login extends Component {
 	constructor(props) {
@@ -98,15 +64,25 @@ handleSubmit = (event) => {
 };
 
 render() {
-	const { classes } = this.props;
 	const { errors, loading } = this.state;
 	return (
+		<ThemeProvider theme={theme}>
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
-			<div className={classes.paper}>
-				<Avatar >
+			<Paper 
+			elevation={0}
+			sx={{
+				display: 'flex', 
+				flexDirection: 'column', 
+				marginTop: theme.spacing(8),
+				alignItems: 'center'
+			}}>
+				<Avatar sx={{
+					margin: theme.spacing(1),
+					backgroundColor: theme.palette.secondary.main,
+				}}>
 					<LockOutlinedIcon />
-				</Avatar>
+				</Avatar >
 				<Typography component="h1" variant="h5">
 					Login
 				</Typography>
@@ -124,6 +100,10 @@ render() {
 						helperText={errors.email}
 						error={errors.email ? true : false}
 						onChange={this.handleChange}
+						sx={{
+							width: '100%',
+							marginTop: theme.spacing(1)
+						}}
 					/>
 					<TextField
 						variant="outlined"
@@ -145,10 +125,13 @@ render() {
 						variant="contained"
 						color="primary"
 						onClick={this.handleSubmit}
+						sx={{
+							margin: theme.spacing(3, 0, 2)
+						}}
 						disabled={loading || !this.state.email || !this.state.password}
 					>
 						Sign In
-						{loading && <CircularProgress size={30}  />}
+						{loading && <CircularProgress size={30} sx={{position: 'absolute'}} />}
 					</Button>
 					<Grid container>
 						<Grid item>
@@ -158,16 +141,17 @@ render() {
 						</Grid>
 					</Grid>
 					{errors.general && (
-						<Typography variant="body2" >
+						<Typography variant="body2" sx={{color: 'red', fontSize: '0.8rem', marginTop: 10}} >
 							{errors.general}
 						</Typography>
 					)}
 				</form>
-			</div>
+			</Paper>
 		</Container>
+		</ThemeProvider>
 	);
 }
 
 }
 
-export default withStyles(styles)(Login)
+export default Login
