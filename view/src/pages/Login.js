@@ -42,7 +42,7 @@ handleChange = (event) => {
 };
 
 handleSubmit = (event) => {
-
+	const navigate = useNavigate()
 	event.preventDefault();
 	this.setState({ loading: true });
 	const userData = {
@@ -52,12 +52,12 @@ handleSubmit = (event) => {
 	axios
 		.post('/login', userData)
 		.then((response) => {
-			console.log(response)
+			console.log(response.data)
 			localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
 			this.setState({
 				loading: false
 			});
-			this.props.navigate('/login');
+			navigate('/');
 		})
 		.catch((error) => {
 			console.log(error)
@@ -91,7 +91,7 @@ render() {
 				<Typography component="h1" variant="h5">
 					Login
 				</Typography>
-				<form noValidate>
+				<form className="form-class" noValidate>
 					<TextField
 						variant="outlined"
 						margin="normal"
