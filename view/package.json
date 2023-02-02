@@ -43,7 +43,9 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ],
-    "proxy": "https://us-central1-to-do-ace6b.cloudfunctions.net/api"
-  }
+    ]
+   
+  },
+  "proxy": "https://us-central1-to-do-ace6b.cloudfunctions.net/api"
+
 }

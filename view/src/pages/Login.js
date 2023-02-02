@@ -3,9 +3,11 @@ import { Avatar, Button, TextField, Link, Grid, CircularProgress } from "@mui/ma
 import { CssBaseline, Typography, Container, Paper } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router";
 
 import axios from 'axios'
 import { Component } from "react";
+
 
 const theme = createTheme()
 
@@ -19,7 +21,6 @@ class Login extends Component {
 		errors: [],
 		loading: false
 	}
-
 }
 
 componentWillReceiveProps(nextProps) {
@@ -29,7 +30,7 @@ componentWillReceiveProps(nextProps) {
 			errors: nextProps.UI.errors
 		});
 	}
-	}
+}
 	
 }
 
@@ -40,6 +41,7 @@ handleChange = (event) => {
 };
 
 handleSubmit = (event) => {
+	const history = useNavigate()
 	event.preventDefault();
 	this.setState({ loading: true });
 	const userData = {
@@ -49,13 +51,15 @@ handleSubmit = (event) => {
 	axios
 		.post('/login', userData)
 		.then((response) => {
+			console.log(response)
 			localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
 			this.setState({
 				loading: false
 			});
-			this.props.history.push('/login');
+			this.props.history.history('/login');
 		})
 		.catch((error) => {
+			console.log(error)
 			this.setState({
 				errors: error.response.data,
 				loading: false
