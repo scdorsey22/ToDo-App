@@ -2,14 +2,15 @@
 import { Avatar, Button, TextField, Link, Grid, CircularProgress } from "@mui/material";
 import { CssBaseline, Typography, Container, Paper } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router";
+import { createTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
 import { Component } from "react";
 
 
 const theme = createTheme()
+
 
 class Login extends Component {
 	constructor(props) {
@@ -41,7 +42,7 @@ handleChange = (event) => {
 };
 
 handleSubmit = (event) => {
-	const history = useNavigate()
+
 	event.preventDefault();
 	this.setState({ loading: true });
 	const userData = {
@@ -56,7 +57,7 @@ handleSubmit = (event) => {
 			this.setState({
 				loading: false
 			});
-			this.props.history.history('/login');
+			this.props.navigate('/login');
 		})
 		.catch((error) => {
 			console.log(error)
@@ -70,7 +71,7 @@ handleSubmit = (event) => {
 render() {
 	const { errors, loading } = this.state;
 	return (
-		<ThemeProvider theme={theme}>
+		
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<Paper 
@@ -152,7 +153,7 @@ render() {
 				</form>
 			</Paper>
 		</Container>
-		</ThemeProvider>
+	
 	);
 }
 
