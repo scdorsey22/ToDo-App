@@ -3,7 +3,7 @@ import { Avatar, Button, TextField, Link, Grid, CircularProgress } from "@mui/ma
 import { CssBaseline, Typography, Container, Paper } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { withRouter } from "../util/withRouter";
 
 import axios from 'axios'
 import { Component } from "react";
@@ -42,7 +42,6 @@ handleChange = (event) => {
 };
 
 handleSubmit = (event) => {
-	const navigate = useNavigate()
 	event.preventDefault();
 	this.setState({ loading: true });
 	const userData = {
@@ -57,7 +56,7 @@ handleSubmit = (event) => {
 			this.setState({
 				loading: false
 			});
-			navigate('/');
+			this.props.navigate('/');
 		})
 		.catch((error) => {
 			console.log(error)
@@ -159,4 +158,4 @@ render() {
 
 }
 
-export default Login
+export default withRouter(Login)

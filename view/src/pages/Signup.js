@@ -3,6 +3,7 @@ import { Avatar, Button, CssBaseline, Link, Grid, Paper} from "@mui/material";
 import { TextField, Typography, Container, CircularProgress } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme } from "@mui/material";
+import { withRouter } from "../util/withRouter";
 
 import axios from "axios";
 
@@ -253,4 +254,4 @@ class Signup extends Component {
 
 }
 
-export default Signup
+export default withRouter(Signup)
