@@ -288,8 +288,8 @@ class Todo extends Component {
 							<Grid item xs={12} sm={6}>
 								<Card  variant="outlined" sx={{
                                     minWidth: 470,
-                                    margin: 10,
-                                    padding: theme.spacing(2)
+                                    margin: 2,
+                                    padding: theme.spacing(1)
                                     }}>
 									<CardContent>
 										<Typography variant="h5" component="h2">
