@@ -117,11 +117,11 @@ class Home extends Component {
                 <Divider />
                 <center>
                     <Avatar src={this.state.profilePicture} sx={{
-                        height: 110,
-                        width: 100,
+                        height: 160,
+                        width: 150,
                         flexShrink: 0,
-                        flexGrow: 0,
-                        marginTop: 20
+                        flexGrow: 10,
+                        marginTop: 15
                     }} />
                     <p>
                         {' '}
