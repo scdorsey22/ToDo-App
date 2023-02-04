@@ -34,10 +34,9 @@ To run this project: <ol>
 # Features
  
 <ul>
-  <li>Create an account, login into the app, logout</li>
-  <li>Update your Account Info and upload a Profile Picture</li>
+  <li>Create an account, login, logout</li>
+  <li>Update your account info and upload a profile picture</li>
   <li>Add, View, Edit, and Delete your Todo's</li>
 </ul>
  
- 
-Created by <br>
+
