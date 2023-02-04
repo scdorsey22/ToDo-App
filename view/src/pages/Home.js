@@ -1,10 +1,12 @@
 import { Component } from "react";
-import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography } from "@mui/material";
+import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Box } from "@mui/material";
 import { Divider, ListItem, ListItemIcon, ListItemText, Avatar, CircularProgress } from "@mui/material";
 import { ExitToApp, Notes, AccountBox } from '@mui/icons-material'
-import { createTheme } from "@mui/system";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { authMiddleWare } from "../util/auth";
 import { withRouter } from "../util/withRouter";
+import Todo from "../components/Todo";
+import Account from "../components/Account";
 
 import axios from "axios";
 
@@ -27,7 +29,7 @@ class Home extends Component {
 
 	logoutHandler = (event) => {
 		localStorage.removeItem('AuthToken');
-		this.props.history.push('/login');
+		this.props.navigate('/login');
 	};
 
 	constructor(props) {
@@ -86,11 +88,12 @@ class Home extends Component {
 			);
 		} else {
         return (
-            <div display="flex">
+           
+            <Box sx={{display: "flex"}}>
             <CssBaseline />
             <AppBar position="fixed" 
             sx={{
-		    zIndex: theme.zIndex + 1
+		    zIndex: theme.zIndex.drawer + 1
 	        }}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
@@ -100,15 +103,15 @@ class Home extends Component {
             </AppBar>
             <Drawer
                 sx={{
-                    width: 240,
+                    position: 'relative',
+                    width: drawerWidth,
                     flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                    }
+
                 }}
                 variant="permanent"
-                classes={{
-                    paper: {
-                        width: 240
-                    }
-                }}
             >
                 <div />
                 <Divider />
@@ -153,9 +156,8 @@ class Home extends Component {
                 </List>
             </Drawer>
 
-            {/* <div>{this.state.render ? <Account /> : <Todo />}</div> */}
-        </div>
-
+            <div>{this.state.render ? <Account /> : <Todo />}</div>
+        </Box>
         )
         }
     }
