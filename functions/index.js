@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const app = require('express')();
 const auth = require('./util/auth')
-
+const cors = require("cors")({ origin: true });
 
 // Todos
 const {
@@ -12,12 +12,11 @@ const {
     editTodo
 } = require('./APIs/todos')
 
-app.get('/todos', auth, getAllTodos);
-app.get('/todo/:todoId', auth, getOneTodo)
-app.post('/todo', auth, postOneTodo)
-app.delete('/todo/:todoId', auth, deleteTodo)
-app.put('/todo/:todoId', auth, editTodo)
-
+app.get('/todos', cors, auth, getAllTodos);
+app.get('/todo/:todoId', cors, auth, getOneTodo)
+app.post('/todo', cors, auth, postOneTodo)
+app.delete('/todo/:todoId', cors, auth, deleteTodo)
+app.put('/todo/:todoId', cors, auth, editTodo)
 
 // Users
 const {
@@ -28,14 +27,14 @@ const {
     updateUserDetails
 } = require("./APIs/users")
 
-app.post('/login', loginUser)
-app.post('/signup', signUpUser)
-app.post('/user/image', auth, uploadProfilePhoto)
-app.get('/user', auth, getUserDetail)
-app.post('/user', auth, updateUserDetails)
-
+app.post('/login', cors, loginUser)
+app.post('/signup', cors, signUpUser)
+app.post('/user/image', cors, auth, uploadProfilePhoto)
+app.get('/user', cors, auth, getUserDetail)
+app.post('/user', cors, auth, updateUserDetails)
 
 exports.api = functions.https.onRequest(app);
+
 
 
 // // Create and deploy your first functions
