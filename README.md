@@ -18,7 +18,7 @@ Our app uses the OpenWeatherMap API to provide you with up-to-date weather infor
 <ul>
 <li>ReactJS</li>
 <li>MaterialUI</li>
-<li>Firebase Firestor, Functions, and Authentication</li>
+<li>Firebase Firestore, Functions, and Authentication</li>
 <li>ExpressJS</li>
 </ul>
 
