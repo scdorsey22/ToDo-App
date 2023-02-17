@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Box } from "@mui/material";
 import { Divider, ListItem, ListItemIcon, ListItemText, Avatar, CircularProgress } from "@mui/material";
 import { ExitToApp, Notes, AccountBox } from '@mui/icons-material'
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme} from "@mui/material";
 import { authMiddleWare } from "../util/auth";
 import { withRouter } from "../util/withRouter";
 import Todo from "../components/Todo";
