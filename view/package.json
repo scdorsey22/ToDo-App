@@ -44,5 +44,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-to-do-ace6b.cloudfunctions.net/api"
+  "proxy": "https://us-central1-to-do-ace6b.cloudfunctions.net/api",
+  "start": "node --max-old-space-size=512 app.js"
+
 }
