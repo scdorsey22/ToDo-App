@@ -127,10 +127,10 @@ render() {
 						type="submit"
 						fullWidth
 						variant="contained"
-						color="primary"
 						onClick={this.handleSubmit}
 						sx={{
-							margin: theme.spacing(3, 0, 2)
+							margin: theme.spacing(3, 0, 2),
+							color: "primary.500"
 						}}
 						disabled={loading || !this.state.email || !this.state.password}
 					>
